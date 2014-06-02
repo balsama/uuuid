@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ *   Provides API functions to set, reset, and retrieve Universally Unique
+ *   User IDs.
+ */
+
+/**
+ * Universally Unique User Ientifier.
+ *
+ * Generates (if necesarry) and returns a UUUID for an anon or authenticated
+ * site visitor.
+ *
+ * @param bool reset
+ *   If TRUE, force generates a new uuid for current user.
+ */
+function uuuid($reset = FALSE) {
+  if ($reset) {
+    setcookie('uuuid', '', 0, base_path());
+  }
+  $uuuid = (isset($_COOKIE['uuuid'])) ? $_COOKIE['uuuid'] : '';
+  if (empty($uuuid)) {
+    $uuuid = user_password(64);
+    setcookie('uuuid', $uuuid, 0, base_path());
+  }
+  return $uuuid;
+}
+

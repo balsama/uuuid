@@ -1,0 +1,6 @@
+name = "Universally Unique User ID"
+description = "Simple API Module that provides a universally unique ID for every user, including anonymous users."
+package = Custom
+core = 7.x
+version = "7.x-1.0"
+
